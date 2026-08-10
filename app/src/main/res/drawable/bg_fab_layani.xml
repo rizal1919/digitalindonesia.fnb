@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Layer 1: Base Gradient Indigo ke Sky Blue -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="30dp"/>
+            <gradient
+                android:startColor="#4F46E5"
+                android:endColor="#0EA5E9"
+                android:angle="45"
+                android:type="linear"/>
+        </shape>
+    </item>
+
+    <!-- Layer 2: Corak oval potong di bagian atas-kanan tombol -->
+    <item
+        android:top="-20dp"
+        android:right="-10dp"
+        android:bottom="20dp"
+        android:left="120dp">
+        <shape android:shape="oval">
+            <solid android:color="#1AFFFFFF"/> <!-- 10% Putih transparan -->
+        </shape>
+    </item>
+
+    <!-- Layer 3: Corak oval kecil di bagian kiri-bawah tombol -->
+    <item
+        android:top="30dp"
+        android:right="180dp"
+        android:bottom="-10dp"
+        android:left="-20dp">
+        <shape android:shape="oval">
+            <solid android:color="#12FFFFFF"/> <!-- Transparan lebih redup -->
+        </shape>
+    </item>
+
+    <!-- Layer 4: Garis tepi akrilik (Glassmorphism border) ditaruh paling akhir biar di atas corak -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="30dp"/>
+            <stroke
+                android:width="1dp"
+                android:color="#40FFFFFF"/>
+        </shape>
+    </item>
+
+</layer-list>

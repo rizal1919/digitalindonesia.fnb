@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!--  buatan  -->
+    <color name="purple_start">#7C6EF6</color>
+    <color name="purple_end">#5B4FE0</color>
+    <color name="text_dark">#1E1E2D</color>
+    <color name="text_gray">#8A8A9E</color>
+    <color name="badge_gray_bg">#EFEFF4</color>
+    <color name="badge_red_bg">#FFE1E1</color>
+    <color name="badge_red_text">#FF5A5A</color>
+
+    <color name="navy_start">#1B2A6B</color>
+    <color name="navy_end">#3B4FE0</color>
+
+    <color name="box_red_start">#F97C74</color>
+    <color name="box_red_end">#F45C63</color>
+
+    <color name="box_blueLight_start">#8FA3F3</color>
+    <color name="box_blueLight_end">#7C93F0</color>
+
+    <color name="box_purple_start">#9A8CF2</color>
+    <color name="box_purple_end">#8778EE</color>
+
+    <color name="box_orange_start">#F7A55E</color>
+    <color name="box_orange_end">#F5924A</color>
+
+    <color name="green_button">#3ABF6B</color>
+    <color name="bg_soft">#F5F6FA</color>
+</resources>

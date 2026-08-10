@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Layer 1: Base Gradient -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp"/>
+            <gradient
+                android:startColor="@color/box_purple_start"
+                android:endColor="@color/box_purple_end"
+                android:angle="135"/>
+        </shape>
+    </item>
+
+    <!-- Layer 2: Ornamen cincin besar melayang di kanan atas -->
+    <item android:top="-80dp" android:right="-60dp" android:bottom="40dp" android:left="60dp">
+        <shape android:shape="oval">
+            <stroke
+                android:width="20dp"
+                android:color="#15FFFFFF"/> <!-- Memakai garis, bukan blok padat -->
+        </shape>
+    </item>
+
+    <!-- Layer 3: Titik bulatan padat di kiri bawah -->
+    <item android:top="80dp" android:right="120dp" android:bottom="-20dp" android:left="-20dp">
+        <shape android:shape="oval">
+            <solid android:color="#1AFFFFFF"/>
+        </shape>
+    </item>
+</layer-list>

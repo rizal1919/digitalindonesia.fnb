@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Layer 1: Base Gradient -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp"/>
+            <gradient
+                android:startColor="@color/box_blueLight_start"
+                android:endColor="@color/box_blueLight_end"
+                android:angle="135"/>
+        </shape>
+    </item>
+
+    <!-- Layer 2: Lingkaran besar di kanan bawah -->
+    <item android:top="60dp" android:right="-40dp" android:bottom="-40dp" android:left="80dp">
+        <shape android:shape="oval">
+            <solid android:color="#20FFFFFF"/> <!-- Putih transparan -->
+        </shape>
+    </item>
+
+    <!-- Layer 3: Lingkaran kecil yang menumpuk di atasnya -->
+    <item android:top="90dp" android:right="20dp" android:bottom="-20dp" android:left="120dp">
+        <shape android:shape="oval">
+            <solid android:color="#1AFFFFFF"/>
+        </shape>
+    </item>
+</layer-list>

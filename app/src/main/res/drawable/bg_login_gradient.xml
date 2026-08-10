@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Background gradient modern (ungu -> biru gelap).
+  Kalau kamu punya gambar sendiri (misal bg_login.jpg / bg_login.png),
+  taruh di res/drawable/, lalu di activity_login.xml ganti:
+    android:background="@drawable/bg_login_gradient"
+  jadi:
+    android:background="@drawable/bg_login"
+  Untuk kombinasi gambar + overlay gelap (biar teks tetap kebaca),
+  lihat file bg_login_image_overlay.xml di folder ini.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:type="linear"
+        android:angle="135"
+        android:startColor="#6A5AE0"
+        android:centerColor="#4C3FC2"
+        android:endColor="#1E1B4B" />
+</shape>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Layer 1: Base Gradient (Soft Pastel Blue) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#F0F6FF"
+                android:endColor="#B6C9DE"
+                android:angle="270"
+                android:type="linear"/>
+        </shape>
+    </item>
+
+    <!-- Layer 2: Lingkaran raksasa terang di kiri atas -->
+    <item
+        android:top="-150dp"
+        android:right="150dp"
+        android:bottom="400dp"
+        android:left="-150dp">
+        <shape android:shape="oval">
+            <solid android:color="#4DFFFFFF"/> <!-- Putih transparan halus -->
+        </shape>
+    </item>
+
+    <!-- Layer 3: Lingkaran raksasa berbayang di kanan bawah -->
+    <item
+        android:top="400dp"
+        android:right="-150dp"
+        android:bottom="-150dp"
+        android:left="100dp">
+        <shape android:shape="oval">
+            <!-- Hitam yang sangaaaat transparan (~5%) sekadar memberi efek kedalaman -->
+            <solid android:color="#0D000000"/>
+        </shape>
+    </item>
+
+</layer-list>
