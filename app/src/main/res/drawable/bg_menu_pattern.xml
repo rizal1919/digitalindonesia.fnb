@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+
+    <!-- Latar Belakang Kartu (Putih Bersih) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M0,0 h64 v64 h-64 z" />
+
+    <!-- Gelombang Abstrak Sudut Kiri Bawah -->
+    <path
+        android:fillColor="#08000000"
+        android:pathData="M 0,35 C 20,40 30,55 25,64 L 0,64 Z" />
+
+    <!-- Gelombang Abstrak Sudut Kanan Atas -->
+    <path
+        android:fillColor="#06000000"
+        android:pathData="M 35,0 C 45,20 60,25 64,15 L 64,0 Z" />
+
+    <!-- Garis Melengkung Dinamis Menyilang -->
+    <path
+        android:strokeColor="#05000000"
+        android:strokeWidth="1.5"
+        android:pathData="M -10,60 C 20,40 40,20 74,10" />
+
+    <!-- Aksen Titik Geometris Minimalis (Kanan Bawah) -->
+    <path
+        android:fillColor="#07000000"
+        android:pathData="M 46,42 m -4,0 a 4,4 0 1,1 8,0 a 4,4 0 1,1 -8,0" />
+
+    <!-- Aksen Titik Geometris Minimalis (Kiri Atas) -->
+    <path
+        android:fillColor="#05000000"
+        android:pathData="M 16,18 m -2,0 a 2,2 0 1,1 4,0 a 2,2 0 1,1 -4,0" />
+
+</vector>

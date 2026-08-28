@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tambahkan string ini ke dalam res/values/strings.xml yang sudah ada -->
+    <string name="search_menu_hint">Cari menu…</string>
+    <string name="latest_order">Latest order</string>
+    <string name="clear">Clear</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="ingredient">Ingredient</string>
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="340dp"
+    android:height="160dp"
+    android:viewportWidth="340"
+    android:viewportHeight="160">
+
+    <!-- Gelombang Parang 1 (Atas) -->
+    <path
+        android:fillColor="#0AFFFFFF"
+        android:pathData="M-20,60 C20,40 40,90 80,70 C120,50 140,100 180,80 C220,60 240,110 280,90 C320,70 340,120 380,100 L380,180 L-20,180 Z" />
+
+    <!-- Gelombang Parang 2 (Bawah) -->
+    <path
+        android:fillColor="#07FFFFFF"
+        android:pathData="M-20,100 C20,80 40,130 80,110 C120,90 140,140 180,120 C220,100 240,150 280,130 C320,110 340,160 380,140 L380,180 L-20,180 Z" />
+
+    <!-- Aksen Mlinjon (Belah Ketupat Khas Parang) - Baris Atas -->
+    <path
+        android:fillColor="#14FFFFFF"
+        android:pathData="M 50,45 L 60,55 L 50,65 L 40,55 Z M 150,55 L 160,65 L 150,75 L 140,65 Z M 250,65 L 260,75 L 250,85 L 240,75 Z" />
+
+    <!-- Aksen Mlinjon - Baris Bawah -->
+    <path
+        android:fillColor="#0DFFFFFF"
+        android:pathData="M 90,95 L 100,105 L 90,115 L 80,105 Z M 190,105 L 200,115 L 190,125 L 180,115 Z M 290,115 L 300,125 L 290,135 L 280,125 Z" />
+
+</vector>

@@ -1,6 +1,5 @@
-package com.digitalindonesia.fnb; // Pastikan ini sesuai dengan nama packagemu
+package com.digitalindonesia.fnb;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,10 +7,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast; // Tambahan untuk memunculkan pesan
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -24,37 +22,38 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout menuContainer;
     private final List<View> menuRows = new ArrayList<>();
 
-    // Data menu: label, icon, badge count (0 = tidak ada badge), badge type ("gray"/"red")
-    private final String[] labels = {"Dashboard", "Analytics", "Messages", "Users", "Settings", "Notifications"};
+    // 1. TAMBAH "Logout" di posisi paling akhir
+    private final String[] labels = {"Dashboard", "Analytics", "Messages", "Users", "Settings", "Notifications", "Logout"};
     private final int[] icons = {
             R.drawable.ic_dashboard,
             R.drawable.ic_analytics,
             R.drawable.ic_messages,
             R.drawable.ic_user,
             R.drawable.ic_settings,
-            R.drawable.ic_notification
+            R.drawable.ic_notification,
+            R.drawable.ic_logout // Pastikan kamu punya icon ic_logout di folder drawable
     };
-    private final int[] badgeCount = {0, 0, 6, 0, 0, 23};
-    private final String[] badgeType = {"", "", "gray", "", "", "red"};
 
-    private int selectedIndex = 1; // default: Analytics aktif kayak di desain
+    // Tambah angka 0 dan string "" untuk indeks si Logout
+    private final int[] badgeCount = {0, 0, 6, 0, 0, 23, 0};
+    private final String[] badgeType = {"", "", "gray", "", "", "red", ""};
+
+    private int selectedIndex = 1; // default: Analytics aktif
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Bikin status bar transparan supaya gradient dashboard nyambung ke atas
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(android.graphics.Color.TRANSPARENT);
             getWindow().getDecorView().setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN // <- Tambahkan baris ini
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
             );
         }
 
         setContentView(R.layout.activity_main);
-
 
         drawerLayout = findViewById(R.id.drawerLayout);
         menuContainer = findViewById(R.id.menuContainer);
@@ -67,8 +66,17 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
 
-//        Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
-//        MainActivity.this.startActivity(myIntent);
+        // 2. FUNGSI KLIK UNTUK TOMBOL UPGRADE PREMIUM
+        TextView btnUpgradePremium = findViewById(R.id.btnUpgradePremium);
+        if (btnUpgradePremium != null) {
+            btnUpgradePremium.setOnClickListener(v -> {
+                Toast.makeText(MainActivity.this, "Buka Halaman Premium!", Toast.LENGTH_SHORT).show();
+                // Tutup drawer setelah diklik
+                drawerLayout.closeDrawer(findViewById(R.id.sidebarContainer));
+
+                // TODO: Kode untuk pindah ke Activity/Fragment Premium
+            });
+        }
     }
 
     private void buildMenuItems() {
@@ -100,8 +108,17 @@ public class MainActivity extends AppCompatActivity {
 
             final int index = i;
             row.setOnClickListener(v -> {
-                selectItem(index);
-                // TODO: pindah ke fragment/activity sesuai menu
+
+                // 3. CEK APAKAH YANG DIKLIK ADALAH LOGOUT
+                if (labels[index].equals("Logout")) {
+                    Toast.makeText(MainActivity.this, "Proses Logout...", Toast.LENGTH_SHORT).show();
+                    // TODO: Hapus session, pindah ke LoginActivity, lalu panggil finish();
+                } else {
+                    selectItem(index);
+                    // TODO: Pindah ke fragment/activity sesuai menu biasa
+                }
+
+                // Tutup sidebar
                 drawerLayout.closeDrawer(findViewById(R.id.sidebarContainer));
             });
 
@@ -131,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Supaya tombol back menutup drawer dulu kalau lagi kebuka
     @Override
     public void onBackPressed() {
         View sidebar = findViewById(R.id.sidebarContainer);
@@ -142,10 +158,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Tambahkan fungsi ini agar bisa dipanggil oleh DashboardFragment
     public void openDrawer() {
         if (drawerLayout != null) {
-            // Membuka navigasi laci dari kiri (START)
             drawerLayout.openDrawer(GravityCompat.START);
         }
     }

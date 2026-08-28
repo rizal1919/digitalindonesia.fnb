@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:background="@drawable/bg_main_gradient"> <!-- Gradient Biru ke Putih -->
 
     <ScrollView
@@ -61,215 +62,307 @@
                         android:textSize="14sp"
                         android:textColor="#64748B"/>
                 </LinearLayout>
-
-                <FrameLayout
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true">
-                    <!-- notifikasi tetap sama -->
-                </FrameLayout>
             </RelativeLayout>
 
             <!-- CARD LAPORAN PENJUALAN & PROFIT -->
-            <RelativeLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_card_modern_pattern"
-                android:padding="20dp"
                 android:layout_marginTop="16dp"
-                android:elevation="8dp">
+                android:paddingBottom="8dp">
 
-                <!-- Icon Mata di pojok kanan atas -->
-                <ImageView
-                    android:id="@+id/btnToggleEye"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    android:src="@drawable/ic_eye"
-                    app:tint="#B3FFFFFF"
-                    android:clickable="true"
-                    android:focusable="true"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_layer_bottom" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_layer_middle" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_layer_top"
+                    android:padding="20dp"
+                    android:clipToOutline="true"
+                    android:elevation="2dp">
+
+                    <ImageView
+                        android:id="@+id/btnToggleEye"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:src="@drawable/ic_eye"
+                        app:tint="#B3FFFFFF"
+                        android:clickable="true"
+                        android:focusable="true"/>
+
+                    <LinearLayout
+                        android:id="@+id/layData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:baselineAligned="false">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Penjualan Hari Ini"
+                                android:textColor="#E0F7FA"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:id="@+id/tvTotalSales"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rp16.567.000"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Estimasi Profit"
+                                android:textColor="#B2EBF2"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:id="@+id/tvTotalProfit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rp4.200.000"
+                                android:textColor="#13364C"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_below="@id/layData"
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                            android:id="@+id/btnDetail"
+                            android:layout_width="0dp"
+                            android:layout_height="44dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Lihat Detail"
+                            android:textColor="@android:color/white"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_pill_dark_teal"
+                            android:layout_marginEnd="8dp"/>
+
+                        <TextView
+                            android:id="@+id/btnExport"
+                            android:layout_width="0dp"
+                            android:layout_height="44dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Export Laporan"
+                            android:textColor="#13364C"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_pill_white"
+                            android:layout_marginStart="8dp"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Semua Layanan"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#5E6C84"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="12dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMenuTransaksi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clipToPadding="false"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <!-- 4 KOTAK MENU DIHAPUS BUNGKUSAN GRIDLAYOUT-NYA AGAR RAPI -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp"
+                android:paddingHorizontal="20dp">
+
+                <!-- BARIS 1: Produk & Riwayat -->
                 <LinearLayout
-                    android:id="@+id/layData"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
                     android:baselineAligned="false">
 
-                    <!-- Kolom Penjualan -->
-                    <LinearLayout
+                    <!-- Card Produk -->
+                    <RelativeLayout
+                        android:id="@+id/menuProduk"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="120dp"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/bg_card_produk"
+                        android:clipToOutline="true">
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:src="@drawable/ic_produk"
+                            app:tint="@android:color/white" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Penjualan Hari Ini"
-                            android:textColor="#CCD3FF"
-                            android:textSize="12sp"/>
-                        <TextView
-                            android:id="@+id/tvTotalSales"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rp16.567.000"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginBottom="22dp"
+                            android:text="Produk"
                             android:textColor="@android:color/white"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="4dp"/>
-                    </LinearLayout>
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
 
-                    <!-- Kolom Profit (Beda Warna) -->
-                    <LinearLayout
+                    <!-- Card Riwayat -->
+                    <RelativeLayout
+                        android:id="@+id/menuRiwayat"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="120dp"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_card_riwayat"
+                        android:clipToOutline="true">
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:src="@drawable/ic_riwayat"
+                            app:tint="@android:color/white" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Estimasi Profit"
-                            android:textColor="#B7FFCB"
-                            android:textSize="12sp"/>
-                        <TextView
-                            android:id="@+id/tvTotalProfit"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rp4.200.000"
-                            android:textColor="#4CAF50"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="4dp"/>
-                    </LinearLayout>
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginBottom="22dp"
+                            android:text="Riwayat"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
                 </LinearLayout>
 
-                <!-- Tombol Action -->
+                <!-- BARIS 2: Stok & Laporan -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_below="@id/layData"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="16dp"
+                    android:baselineAligned="false">
 
-                    <TextView
-                        android:id="@+id/btnDetail"
+                    <!-- Card Stok -->
+                    <RelativeLayout
+                        android:id="@+id/menuStok"
                         android:layout_width="0dp"
-                        android:layout_height="44dp"
+                        android:layout_height="120dp"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Lihat Detail"
-                        android:textColor="@android:color/white"
-                        android:textSize="13sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/bg_pill_dark"
-                        android:layout_marginEnd="8dp"/>
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/bg_card_stok"
+                        android:clipToOutline="true">
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:src="@drawable/ic_stok"
+                            app:tint="@android:color/white" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginBottom="22dp"
+                            android:text="Stok"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/btnExport"
+                    <!-- Card Laporan -->
+                    <RelativeLayout
+                        android:id="@+id/menuLaporan"
                         android:layout_width="0dp"
-                        android:layout_height="44dp"
+                        android:layout_height="120dp"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Export Laporan"
-                        android:textColor="@color/navy_end"
-                        android:textSize="13sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/bg_pill_white"
-                        android:layout_marginStart="8dp"/>
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_card_laporan"
+                        android:clipToOutline="true">
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:src="@drawable/ic_laporan"
+                            app:tint="@android:color/white" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginBottom="22dp"
+                            android:text="Laporan"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
                 </LinearLayout>
-            </RelativeLayout>
+            </LinearLayout>
 
-            <!-- 4 KOTAK MENU -->
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:rowCount="2"
-                android:layout_marginTop="20dp"
-                android:useDefaultMargins="false">
-
-                <!-- Gunakan drawable corak/pattern baru di background -->
-                <LinearLayout
-                    android:id="@+id/menuProduk"
-                    android:layout_width="0dp"
-                    android:layout_height="130dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical"
-                    android:background="@drawable/bg_box_red"
-                    android:padding="16dp"
-                    android:gravity="bottom"
-                    android:elevation="4dp">
-                    <!-- Isian sama seperti sebelumnya -->
-                    <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@drawable/ic_produk" app:tint="@android:color/white" android:layout_marginBottom="12dp"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Produk" android:textColor="@android:color/white" android:textStyle="bold" android:textSize="16sp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/menuRiwayat"
-                    android:layout_width="0dp"
-                    android:layout_height="130dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical"
-                    android:background="@drawable/bg_box_orange"
-                    android:padding="16dp"
-                    android:gravity="bottom"
-                    android:elevation="4dp">
-                    <!-- Isian sama -->
-                    <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@drawable/ic_riwayat" app:tint="@android:color/white" android:layout_marginBottom="12dp"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Riwayat" android:textColor="@android:color/white" android:textStyle="bold" android:textSize="16sp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/menuStok"
-                    android:layout_width="0dp"
-                    android:layout_height="130dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical"
-                    android:background="@drawable/bg_box_bluelight"
-                    android:padding="16dp"
-                    android:gravity="bottom"
-                    android:elevation="4dp">
-                    <!-- Isian sama -->
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/ic_stok" app:tint="@android:color/white" android:layout_marginBottom="12dp"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Stok" android:textColor="@android:color/white" android:textStyle="bold" android:textSize="16sp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/menuLaporan"
-                    android:layout_width="0dp"
-                    android:layout_height="130dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical"
-                    android:background="@drawable/bg_box_purple"
-                    android:padding="16dp"
-                    android:gravity="bottom"
-                    android:elevation="4dp">
-                    <!-- Isian sama -->
-                    <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@drawable/ic_analytics" app:tint="@android:color/white" android:layout_marginBottom="12dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Laporan" android:textColor="@android:color/white" android:textStyle="bold" android:textSize="16sp"/>
-                </LinearLayout>
-
-                <!-- Lakukan hal yang sama untuk menuStok dan menuLaporan -->
-
-            </GridLayout>
         </LinearLayout>
     </ScrollView>
 
-    <!-- FLOATING BUTTON "LAYANI" LEBIH PANJANG -->
+    <!-- FLOATING BUTTON "LAYANI" -->
     <LinearLayout
         android:id="@+id/btnLayani"
         android:layout_margin="20dp"
@@ -289,7 +382,9 @@
             app:tint="@android:color/white"
             android:layout_marginEnd="12dp"/>
 
+        <!-- ID DITAMBAHKAN DI SINI -->
         <TextView
+            android:id="@+id/tvBtnLayani"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mulai Layani Pelanggan"
