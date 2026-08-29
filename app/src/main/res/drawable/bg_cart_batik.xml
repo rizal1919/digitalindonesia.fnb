@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Base shape dengan sudut membulat -->
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Atur seberapa melengkung sudutnya -->
+            <corners android:radius="10dp" />
+            <!-- Warna fallback jika batik gagal dimuat / transparan -->
+            <solid android:color="#A93226" />
+        </shape>
+    </item>
+
+    <!-- Pattern Batik (Pastikan kamu punya gambar 'pattern_batik.png' di folder drawable) -->
+    <!-- Jika belum punya gambar batiknya, bagian <item> ini bisa di-comment dulu -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+        </shape>
+        <bitmap
+            android:src="@drawable/img_batik_pattern"
+            android:tileMode="repeat"
+            android:alpha="0.2" /> <!-- Alpha 0.2 agar batik jadi background tipis (watermark) dan teks tetap terbaca -->
+    </item>
+</layer-list>

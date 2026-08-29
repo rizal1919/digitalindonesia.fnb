@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardMenuRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginBottom="12dp"
+    android:layout_marginTop="4dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:strokeWidth="0dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <!-- Gambar Menu di Kiri -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivMenuImage"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/CircleImageStyle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <!-- Label Stok (Menempel di gambar) -->
+        <TextView
+            android:id="@+id/tvMenuStock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_pill_gray"
+            android:backgroundTint="#F5F5F5"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="2dp"
+            android:textSize="9sp"
+            android:textStyle="bold"
+            android:textColor="#424242"
+            app:layout_constraintTop_toTopOf="@id/ivMenuImage"
+            app:layout_constraintStart_toStartOf="@id/ivMenuImage" />
+
+        <!-- Judul Menu di Tengah -->
+        <TextView
+            android:id="@+id/tvMenuTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivMenuImage"
+            app:layout_constraintEnd_toStartOf="@id/frameAdd"
+            tools:text="Nasi Goreng Spesial" />
+
+        <!-- Harga Menu di bawah judul -->
+        <TextView
+            android:id="@+id/tvMenuPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="15sp"
+            android:textColor="#4A55C7"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tvMenuTitle"
+            app:layout_constraintStart_toStartOf="@id/tvMenuTitle"
+            app:layout_constraintEnd_toEndOf="@id/tvMenuTitle"
+            tools:text="Rp25.000" />
+
+        <!-- Tombol Tambah + Badge Keranjang di Kanan -->
+        <FrameLayout
+            android:id="@+id/frameAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/btnAddMenu"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_circle_blue"
+                android:padding="8dp"
+                android:src="@drawable/ic_add"
+                app:tint="@android:color/white"
+                android:contentDescription="@string/add_to_cart" />
+
+            <TextView
+                android:id="@+id/tvQtyBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:background="@drawable/bg_badge_red"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                android:minWidth="16dp"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:visibility="gone"
+                tools:text="2"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

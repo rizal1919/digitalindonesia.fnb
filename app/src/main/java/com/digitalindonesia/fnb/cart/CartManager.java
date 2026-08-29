@@ -1,7 +1,6 @@
 package com.digitalindonesia.fnb.cart;
 
-import android.view.MenuItem;
-
+import com.digitalindonesia.fnb.model.MenuItem;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;

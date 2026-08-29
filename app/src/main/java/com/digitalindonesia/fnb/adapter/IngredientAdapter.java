@@ -10,14 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.digitalindonesia.fnb.R;
+import com.digitalindonesia.fnb.model.Ingredient;
 
 import java.util.List;
 
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.IngredientViewHolder> {
 
-    private final List<com.example.foodorder.model.Ingredient> ingredientList;
+    private final List<Ingredient> ingredientList;
 
-    public IngredientAdapter(List<com.example.foodorder.model.Ingredient> ingredientList) {
+    public IngredientAdapter(List<Ingredient> ingredientList) {
         this.ingredientList = ingredientList;
     }
 
@@ -31,7 +32,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
     @Override
     public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
-        com.example.foodorder.model.Ingredient ingredient = ingredientList.get(position);
+        Ingredient ingredient = ingredientList.get(position);
         holder.ivIngredient.setImageResource(ingredient.getImageResId());
         holder.ivIngredient.setContentDescription(ingredient.getName());
     }

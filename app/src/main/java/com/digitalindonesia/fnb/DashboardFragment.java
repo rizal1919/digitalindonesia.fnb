@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.digitalindonesia.fnb.adapter.MenuAdapter;
+import com.digitalindonesia.fnb.cart.CartManager;
 import com.digitalindonesia.fnb.model.MenuModel;
 
 import java.text.NumberFormat;
@@ -115,12 +116,8 @@ public class DashboardFragment extends Fragment {
                 .addToBackStack(null) // Agar user bisa kembali dengan tombol back
                 .commit();
 
-        // CATATAN: Pastikan class CartManager dari Claude sudah kamu buat.
-        // Jika belum, comment dua baris di bawah ini agar tidak error.
-        /*
         refreshCartFab(CartManager.getInstance().getTotalQuantity(),
                 CartManager.getInstance().getTotalPrice());
-        */
     }
 
     public void onCartSummaryChanged(int totalQuantity, double totalPrice) {

@@ -1,5 +1,6 @@
 package com.digitalindonesia.fnb;
 
+import com.digitalindonesia.fnb.R;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.digitalindonesia.fnb.adapter.IngredientAdapter;
 import com.digitalindonesia.fnb.cart.CartManager;
+import com.digitalindonesia.fnb.model.MenuItem;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -23,6 +25,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.button.MaterialButton;
+import android.graphics.Color;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,8 +44,9 @@ public class MenuDetailBottomSheet extends BottomSheetDialogFragment {
 
     private TextView tvQuantity, tvTotalPrice, tvTitle, tvDescription, tvCartBadge, tvLikeCount;
     private ImageView btnFavorite, btnLike;
+    private MaterialButton btnAddToCart;
 
-    public static MenuDetailBottomSheet newInstance(com.example.foodorder.model.MenuItem item) {
+    public static MenuDetailBottomSheet newInstance(MenuItem item) {
         MenuDetailBottomSheet fragment = new MenuDetailBottomSheet();
         Bundle args = new Bundle();
         args.putSerializable(ARG_MENU_ITEM, item);
@@ -71,6 +77,7 @@ public class MenuDetailBottomSheet extends BottomSheetDialogFragment {
         int existingQty = CartManager.getInstance().getQuantity(menuItem.getId());
         localQuantity = Math.max(1, existingQty);
 
+        btnAddToCart = view.findViewById(R.id.btnAddToCart);
         ImageView ivHero = view.findViewById(R.id.ivHero);
         ImageView btnBack = view.findViewById(R.id.btnBack);
         ImageView btnCart = view.findViewById(R.id.btnCart);
@@ -83,7 +90,6 @@ public class MenuDetailBottomSheet extends BottomSheetDialogFragment {
         tvQuantity = view.findViewById(R.id.tvQuantity);
         tvTotalPrice = view.findViewById(R.id.tvTotalPrice);
         RecyclerView rvIngredients = view.findViewById(R.id.rvIngredients);
-        View btnAddToCart = view.findViewById(R.id.btnAddToCart);
         btnLike = view.findViewById(R.id.btnLike);
         tvLikeCount = view.findViewById(R.id.tvLikeCount);
 
@@ -108,7 +114,7 @@ public class MenuDetailBottomSheet extends BottomSheetDialogFragment {
         });
 
         btnDecrease.setOnClickListener(v -> {
-            if (localQuantity > 1) {
+            if (localQuantity > 0) {
                 localQuantity--;
                 updateQuantityUi();
             }
@@ -134,10 +140,10 @@ public class MenuDetailBottomSheet extends BottomSheetDialogFragment {
     @Override
     public void onStart() {
         super.onStart();
-        // Buat bottom sheet terbuka penuh dari awal (opsional, sesuai referensi UI).
+        // Memaksa bottom sheet langsung terbuka penuh (expanded)
         if (getDialog() instanceof BottomSheetDialog) {
             View bottomSheet = ((BottomSheetDialog) getDialog())
-                    .findViewById(com.google.android.material.R.id.design_bottom_sheet);
+                    .findViewById(com.google.android.material.R.id.design_bottom_sheet); // <-- Ditambahkan package Material R
             if (bottomSheet != null) {
                 BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
             }
@@ -147,12 +153,38 @@ public class MenuDetailBottomSheet extends BottomSheetDialogFragment {
     private void updateQuantityUi() {
         tvQuantity.setText(String.valueOf(localQuantity));
         tvTotalPrice.setText(formatPrice(menuItem.getPrice() * localQuantity));
+
+        if (btnAddToCart == null) return;
+
+        int existingQty = CartManager.getInstance().getQuantity(menuItem.getId());
+
+        if (localQuantity == 0 && existingQty > 0) {
+            btnAddToCart.setText("Hapus dari Keranjang");
+            btnAddToCart.setBackgroundColor(Color.parseColor("#E53935")); // Merah peringatan
+        } else if (existingQty > 0 && localQuantity != existingQty) {
+            btnAddToCart.setText("Update Keranjang");
+            btnAddToCart.setBackgroundColor(Color.parseColor("#4A55C7")); // Warna default
+        } else {
+            btnAddToCart.setText("Tambah ke Keranjang");
+            btnAddToCart.setBackgroundColor(Color.parseColor("#4A55C7"));
+        }
+
+        // Nonaktifkan tombol jika user belum menambah apapun padahal item belum ada di keranjang
+        if (localQuantity == 0 && existingQty == 0) {
+            btnAddToCart.setEnabled(false);
+        } else {
+            btnAddToCart.setEnabled(true);
+        }
     }
 
     private void updateFavoriteIcon() {
-        btnFavorite.setImageResource(menuItem.isFavorite()
-                ? R.drawable.ic_favorite_filled
-                : R.drawable.ic_favorite_border);
+        if (menuItem.isFavorite()) {
+            btnFavorite.setImageResource(R.drawable.ic_favorite_filled);
+            btnFavorite.setColorFilter(Color.parseColor("#E53935")); // Merah saat di-like
+        } else {
+            btnFavorite.setImageResource(R.drawable.ic_favorite_border);
+            btnFavorite.setColorFilter(Color.parseColor("#BDBDBD")); // Abu-abu saat belum di-like
+        }
     }
 
     private void updateCartBadge() {

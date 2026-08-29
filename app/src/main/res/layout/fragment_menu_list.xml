@@ -1,71 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@android:color/white">
 
-    <!-- Search bar -->
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="1dp"
-        app:strokeWidth="1dp"
-        app:strokeColor="#E0E0E0">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="12dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_launcher_foreground"
-                app:tint="@android:color/darker_gray" />
-
-            <EditText
-                android:id="@+id/etSearch"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:background="@android:color/transparent"
-                android:hint="cari"
-                android:inputType="text"
-                android:paddingVertical="12dp"
-                android:maxLines="1" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Header "Latest order" + tombol Clear -->
+    <!-- 1. Baris Atas: Tombol Sidebar & Search -->
     <LinearLayout
+        android:id="@+id/topBarContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingHorizontal="16dp"
+        android:paddingTop="16dp">
+
+        <ImageView
+            android:id="@+id/btnMenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_menu_hamburger"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="1dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#E0E0E0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="12dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_search"
+                    app:tint="@android:color/darker_gray" />
+
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/search_menu_hint"
+                    android:inputType="text"
+                    android:paddingVertical="12dp"
+                    android:maxLines="1" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <!-- 2. Dropdown Tipe Pesanan, Input Meja & Kategori Horizontal -->
+    <LinearLayout
+        android:id="@+id/filterContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBarContainer"
+        android:orientation="vertical"
+        android:paddingTop="8dp">
+
+        <!-- Baris Tipe Pesanan & Nama Pelanggan -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:gravity="center_vertical">
+
+            <!-- Wrapper untuk Spinner agar punya background bagus -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_input_outline"
+                android:paddingEnd="8dp">
+
+                <Spinner
+                    android:id="@+id/spinnerOrderType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:backgroundTint="#4A55C7" />
+            </LinearLayout>
+
+            <!-- Input Nama Pelanggan / No Meja untuk mengisi ruang kosong -->
+            <EditText
+                android:id="@+id/etCustomerName"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/bg_input_outline"
+                android:hint="Nama Pembeli"
+                android:paddingHorizontal="16dp"
+                android:textSize="14sp"
+                android:textColorHint="#9E9E9E"
+                android:inputType="textPersonName"
+                android:maxLines="1" />
+        </LinearLayout>
+
+        <!-- Kategori Menu -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingHorizontal="16dp"
+            android:clipToPadding="false"
+            android:layout_marginTop="12dp">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:selectionRequired="true">
+                <!-- Chip akan di-generate dari Java -->
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <!-- 3. Header List Menu -->
+    <LinearLayout
+        android:id="@+id/headerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/filterContainer"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp"
         android:paddingBottom="8dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="terbaru"
+            android:text="@string/latest_order"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="@android:color/black" />
+
+        <!-- Icon Toggle Grid/List -->
+        <ImageView
+            android:id="@+id/btnToggleView"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="12dp"
+            android:padding="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            app:tint="#4A55C7" />
 
         <TextView
             android:id="@+id/tvClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="clear"
+            android:text="@string/clear"
             android:textColor="#4A55C7"
             android:padding="4dp"
             android:clickable="true"
@@ -73,15 +176,91 @@
             android:background="?attr/selectableItemBackground" />
     </LinearLayout>
 
-    <!-- Daftar menu -->
+    <!-- 4. Daftar Menu (Sekarang akan jadi Grid) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMenu"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContainer"
+        android:layout_above="@+id/floatingCartContainer"
         android:clipToPadding="false"
-        android:paddingBottom="88dp"
-        tools:listitem="@layout/item_menu"
-        xmlns:tools="http://schemas.android.com/tools" />
+        tools:listitem="@layout/item_menu" />
 
-</LinearLayout>
+    <!-- 5. Komponen Floating Cart (Sesuai kodenmu) -->
+    <LinearLayout
+        android:id="@+id/floatingCartContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_margin="16dp"
+        android:visibility="gone">
+
+        <!-- Banner Promo Atas (Kuning) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFF3E0"
+            android:orientation="horizontal"
+            android:paddingTop="12dp"
+            android:paddingHorizontal="12dp"
+            android:paddingBottom="28dp"
+            android:layout_marginBottom="-16dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_produk" />
+
+            <TextView
+                android:id="@+id/tvPromoMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Tambah 2 produk lagi dapatkan disc 30%"
+                android:textColor="#6D4C41"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Banner Checkout Bawah (Batik) -->
+        <RelativeLayout
+            android:id="@+id/btnCheckout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_cart_batik"
+            android:padding="16dp"
+            android:elevation="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <TextView
+                android:id="@+id/tvCartQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 produk"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvCartPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvCartQty"
+                android:text="Rp37.000"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_right"
+                app:tint="@android:color/white" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

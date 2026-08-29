@@ -30,7 +30,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/ic_messages"
+                android:src="@drawable/ic_back"
                 app:tint="@android:color/white"
                 app:backgroundTint="#33000000"
                 app:fabCustomSize="40dp"
@@ -52,7 +52,7 @@
                     android:id="@+id/btnCart"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_stok"
+                    android:src="@drawable/ic_cart"
                     app:tint="@android:color/white"
                     app:backgroundTint="#33000000"
                     app:fabCustomSize="40dp"
@@ -101,7 +101,7 @@
                     android:id="@+id/btnFavorite"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:src="@drawable/ic_riwayat"
+                    android:src="@drawable/ic_favorite_border"
                     app:tint="#E53935"
                     android:clickable="true"
                     android:focusable="true"
@@ -139,7 +139,7 @@
                         android:id="@+id/btnDecrease"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/ic_eye_off"
+                        android:src="@drawable/ic_delete"
                         app:tint="#FF9800"
                         android:clickable="true"
                         android:focusable="true" />
@@ -157,7 +157,7 @@
                         android:id="@+id/btnIncrease"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/ic_analytics"
+                        android:src="@drawable/ic_add"
                         app:tint="#FF9800"
                         android:clickable="true"
                         android:focusable="true" />
@@ -181,7 +181,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Bahan"
+                    android:text="@string/ingredient"
                     android:textStyle="bold"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -221,9 +221,10 @@
                         android:layout_width="0dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
-                        android:text="Tambah ke keranjang"
+                        android:text="@string/add_to_cart"
                         android:textAllCaps="false"
                         android:textSize="16sp"
+                        android:textColor="@color/white"
                         app:cornerRadius="26dp"
                         app:backgroundTint="#4A55C7" />
 
@@ -244,7 +245,7 @@
                                 android:id="@+id/btnLike"
                                 android:layout_width="18dp"
                                 android:layout_height="18dp"
-                                android:src="@drawable/ic_launcher_foreground"
+                                android:src="@drawable/ic_favorite_filled"
                                 app:tint="#FF9800" />
 
                             <TextView
