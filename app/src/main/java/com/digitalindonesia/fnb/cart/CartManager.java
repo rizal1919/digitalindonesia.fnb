@@ -30,6 +30,11 @@ public class CartManager {
         return instance;
     }
 
+    /** Mengambil semua item di keranjang dalam bentuk List */
+    public synchronized java.util.List<MenuItem> getCartItems() {
+        return new java.util.ArrayList<>(cartItems.values());
+    }
+
     public void addListener(CartListener listener) {
         listeners.add(listener);
     }

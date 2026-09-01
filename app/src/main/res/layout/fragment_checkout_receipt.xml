@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/ivSuccessIllustration"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_order_success_placeholder"
+        android:layout_marginBottom="24dp"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pesanan Berhasil Dibuat"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Terima kasih, pesanan Anda sedang diproses."
+        android:textSize="13sp"
+        android:textColor="#757575"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/tvReceiptNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No. Struk: #INV20260830001"
+        android:textStyle="bold"
+        android:textColor="#FF9800"
+        android:layout_marginBottom="40dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCetakStruk"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Cetak Struk"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:backgroundTint="#FF9800"
+        app:cornerRadius="26dp"
+        android:layout_marginBottom="12dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnKembaliBeranda"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Kembali ke Beranda"
+        android:textAllCaps="false"
+        app:strokeColor="#FF9800"
+        android:textColor="#FF9800"
+        app:cornerRadius="26dp" />
+
+</LinearLayout>

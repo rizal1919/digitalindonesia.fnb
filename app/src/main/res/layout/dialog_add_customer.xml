@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/bg_content_card">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tambah Pelanggan Baru"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#00796B"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/etNewCustomerName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_input_outline"
+        android:hint="Nama Lengkap"
+        android:paddingHorizontal="12dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Nanti kamu bisa tambahkan intent ACTION_PICK kontak di sebelah EditText ini -->
+    <EditText
+        android:id="@+id/etNewCustomerPhone"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_input_outline"
+        android:hint="No Handphone"
+        android:inputType="phone"
+        android:paddingHorizontal="12dp"
+        android:layout_marginBottom="24dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSimpanPelanggan"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Simpan Pelanggan"
+        android:textAllCaps="false" />
+</LinearLayout>

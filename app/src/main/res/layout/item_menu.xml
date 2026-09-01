@@ -81,39 +81,73 @@
             tools:text="Rp25.000" />
 
         <!-- Tombol Tambah + Badge Keranjang -->
+        <!-- Tombol Tambah & Kontrol Kuantitas di Kanan Bawah -->
         <FrameLayout
             android:id="@+id/frameAdd"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@id/tvMenuTitle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
+            <!-- STATE 1: Belum ada di keranjang -->
             <ImageView
-                android:id="@+id/btnAddMenu"
+                android:id="@+id/btnAddInitial"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="@drawable/bg_circle_blue"
                 android:padding="8dp"
                 android:src="@drawable/ic_add"
-                app:tint="@android:color/white"
-                android:contentDescription="@string/add_to_cart" />
+                app:tint="@android:color/white" />
 
-            <TextView
-                android:id="@+id/tvQtyBadge"
+            <!-- STATE 2: Sudah ada di keranjang (Pill Plus/Minus) -->
+            <LinearLayout
+                android:id="@+id/llQuantityControl"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|end"
-                android:background="@drawable/bg_badge_red"
-                android:textColor="@android:color/white"
-                android:textSize="10sp"
-                android:minWidth="16dp"
-                android:gravity="center"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_pill_blue"
                 android:paddingHorizontal="4dp"
-                android:visibility="gone"
-                tools:text="2"
-                tools:visibility="visible" />
+                android:visibility="gone">
+
+                <!-- Tombol Minus / Hapus -->
+                <ImageView
+                    android:id="@+id/btnDecrease"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_minus_2"
+                    app:tint="@android:color/white"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <!-- Angka Kuantitas -->
+                <TextView
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="20dp"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    tools:text="1" />
+
+                <!-- Tombol Plus -->
+                <ImageView
+                    android:id="@+id/btnIncrease"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_add_2"
+                    app:tint="@android:color/white"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"/>
+            </LinearLayout>
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

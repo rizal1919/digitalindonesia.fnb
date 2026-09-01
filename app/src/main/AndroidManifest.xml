@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fnb"
         tools:targetApi="31">
+        <activity
+            android:name=".CheckoutActivity"
+            android:exported="false" />
         <!-- SPLASH SCREEN SEBAGAI LAUNCHER (HALAMAN PERTAMA) -->
         <activity
             android:name=".SplashActivity"
@@ -19,16 +22,13 @@
             android:theme="@style/Theme.Design.NoActionBar"> <!-- Opsional: agar tidak ada judul bar -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- LOGIN ACTIVITY (Hanya bisa dibuka dari Splash Screen) -->
+        </activity> <!-- LOGIN ACTIVITY (Hanya bisa dibuka dari Splash Screen) -->
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
-
-        <!-- MAIN ACTIVITY (DASHBOARD) -->
+            android:exported="false" /> <!-- MAIN ACTIVITY (DASHBOARD) -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />

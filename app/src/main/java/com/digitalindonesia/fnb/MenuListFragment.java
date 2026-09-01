@@ -1,5 +1,6 @@
 package com.digitalindonesia.fnb;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,10 +15,8 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,9 +42,12 @@ public class MenuListFragment extends Fragment implements ProductAdapter.OnMenuI
     private TextView tvCartQty, tvCartPrice, tvPromoMessage;
     private EditText etSearch;
     private TextView tvClear;
-    private Spinner spinnerOrderType;
     private ChipGroup chipGroupCategory;
 
+    // ==== BARU: Header & Tab Order Type (pengganti Spinner + EditText nama pelanggan) ====
+    private ImageView btnBack;
+    private TextView tabDineIn, tabPickUp, tabDelivery;
+    private String currentOrderType = "Dine In"; // Default tab aktif
 
     private ImageView btnToggleView;
     private boolean isGridView = true; // Default ke Grid
@@ -93,11 +95,10 @@ public class MenuListFragment extends Fragment implements ProductAdapter.OnMenuI
 
         etSearch = view.findViewById(R.id.etSearch);
         tvClear = view.findViewById(R.id.tvClear);
-        spinnerOrderType = view.findViewById(R.id.spinnerOrderType);
         chipGroupCategory = view.findViewById(R.id.chipGroupCategory);
 
         setupDummyData();
-        setupOrderTypeSpinner();
+        setupOrderTypeTabs(view);
         setupCategories();
 
         adapter = new ProductAdapter(filteredMenuList, this);
@@ -119,6 +120,14 @@ public class MenuListFragment extends Fragment implements ProductAdapter.OnMenuI
             applyFilters();
         });
 
+        // Tombol Back di header baru
+        btnBack = view.findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> {
+            if (getActivity() != null) {
+                getActivity().onBackPressed();
+            }
+        });
+
         ImageView btnMenu = view.findViewById(R.id.btnMenu);
         btnMenu.setOnClickListener(v -> {
             if (getActivity() instanceof MainActivity) {
@@ -133,9 +142,50 @@ public class MenuListFragment extends Fragment implements ProductAdapter.OnMenuI
         View btnCheckout = view.findViewById(R.id.btnCheckout);
 
         btnCheckout.setOnClickListener(v -> {
-            String orderType = spinnerOrderType.getSelectedItem().toString();
-            Toast.makeText(getContext(), "Lanjut Pembayaran (" + orderType + ")", Toast.LENGTH_SHORT).show();
+            // Validasi pencegahan: Jangan biarkan user masuk ke halaman checkout jika keranjang kosong
+            if (CartManager.getInstance().getTotalQuantity() <= 0) {
+                Toast.makeText(getContext(), "Keranjang masih kosong!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Buat jalur perpindahan ke CheckoutActivity
+            Intent intent = new Intent(requireActivity(), CheckoutActivity.class);
+
+            // (Opsional) Jika kamu ingin membawa data Tipe Pesanan dari Tab Segmen (Dine In/Pick Up/Delivery)
+            // intent.putExtra("EXTRA_ORDER_TYPE", namaVariabelTipePesananKamu);
+
+            startActivity(intent);
         });
+    }
+
+    // ==== BARU: Setup Tab Order Type (pengganti setupOrderTypeSpinner) ====
+    private void setupOrderTypeTabs(View root) {
+        tabDineIn = root.findViewById(R.id.tabDineIn);
+        tabPickUp = root.findViewById(R.id.tabPickUp);
+        tabDelivery = root.findViewById(R.id.tabDelivery);
+
+        tabDineIn.setOnClickListener(v -> selectOrderTypeTab(tabDineIn, "Dine In"));
+        tabPickUp.setOnClickListener(v -> selectOrderTypeTab(tabPickUp, "Pick Up"));
+        tabDelivery.setOnClickListener(v -> selectOrderTypeTab(tabDelivery, "Delivery"));
+
+        // Set default state saat pertama kali dibuka
+        selectOrderTypeTab(tabDineIn, "Dine In");
+    }
+
+    private void selectOrderTypeTab(TextView selectedTab, String orderType) {
+        currentOrderType = orderType;
+
+        TextView[] allTabs = {tabDineIn, tabPickUp, tabDelivery};
+        for (TextView tab : allTabs) {
+            boolean isSelected = (tab == selectedTab);
+            tab.setBackgroundResource(isSelected ? R.drawable.bg_tab_selected : R.drawable.bg_tab_unselected);
+            tab.setTextColor(isSelected
+                    ? getResources().getColor(android.R.color.white)
+                    : getResources().getColor(android.R.color.white));
+            // Catatan: kalau mau teks tab non-aktif warna gelap/abu-abu (karena background
+            // transparan di atas foto), ganti baris di atas sesuai kebutuhan desain, misal:
+            // tab.setTextColor(isSelected ? Color.WHITE : Color.parseColor("#EFEFEF"));
+        }
     }
 
     private void applyViewMode() {
@@ -158,22 +208,6 @@ public class MenuListFragment extends Fragment implements ProductAdapter.OnMenuI
             adapter.notifyDataSetChanged();
         }
     }
-
-    // Perbaikan Dropdown Spinner agar tidak transparan/putih
-    private void setupOrderTypeSpinner() {
-        String[] orderTypes = {"Normal", "Dine In", "Take Away", "Delivery"};
-
-        // Gunakan layout bawaan Android yang terpisah untuk tampilan tertutup (simple_spinner_item)
-        // dan tampilan saat terbuka (simple_spinner_dropdown_item)
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                orderTypes
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerOrderType.setAdapter(adapter);
-    }
-
 
     private void setupCategories() {
         // Ini bisa didapat dari SQLite nanti
@@ -284,9 +318,21 @@ public class MenuListFragment extends Fragment implements ProductAdapter.OnMenuI
     }
 
     @Override
-    public void onAddClicked(MenuItem item, int position) {
+    public void onIncreaseClicked(MenuItem item, int position) {
+        // Cek stok sebelum menambah
+        if (item.getQuantity() >= item.getStock()) {
+            Toast.makeText(getContext(), "Stok tidak mencukupi!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         CartManager.getInstance().addOne(item);
         adapter.refreshItem(position);
+    }
+
+    @Override
+    public void onDecreaseClicked(MenuItem item, int position) {
+        CartManager.getInstance().removeOne(item);
+        adapter.refreshItem(position); // Akan otomatis mengubah tampilan ke tombol + jika qty jadi 0
     }
 
     private void setupDummyData() {

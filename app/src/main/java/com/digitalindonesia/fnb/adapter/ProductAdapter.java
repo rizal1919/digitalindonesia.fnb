@@ -20,15 +20,20 @@ import java.util.Locale;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MenuViewHolder> {
 
     /** Listener untuk 2 aksi berbeda: klik body card vs klik tombol '+'. */
+//    public interface OnMenuItemActionListener {
+//        void onCardClicked(MenuItem item, int position);
+//        void onAddClicked(MenuItem item, int position);
+//    }
+
+    // 1. UPDATE INTERFACE
     public interface OnMenuItemActionListener {
         void onCardClicked(MenuItem item, int position);
-        void onAddClicked(MenuItem item, int position);
+        void onIncreaseClicked(MenuItem item, int position);
+        void onDecreaseClicked(MenuItem item, int position);
     }
 
     private final List<MenuItem> menuList;
     private final OnMenuItemActionListener listener;
-
-    // VARIABEL BARU: Untuk menyimpan status view (Grid atau List)
     private boolean isGridView = true;
 
     public ProductAdapter(List<MenuItem> menuList, OnMenuItemActionListener listener) {
@@ -70,31 +75,46 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MenuView
         // Logika Tampilan Stok
         holder.tvMenuStock.setText("Stok: " + item.getStock());
         if (item.getStock() <= 0) {
-            // Jika stok habis: teks merah, tombol pudar dan tidak bisa diklik
             holder.tvMenuStock.setTextColor(Color.parseColor("#E53935"));
-            holder.btnAdd.setAlpha(0.4f);
-            holder.btnAdd.setEnabled(false);
+            holder.btnAddInitial.setAlpha(0.4f);
+            holder.btnAddInitial.setEnabled(false);
+            holder.btnIncrease.setEnabled(false); // Matikan tombol plus di kapsul jika stok habis
         } else {
-            // Jika stok ada: teks normal, tombol aktif
             holder.tvMenuStock.setTextColor(Color.parseColor("#424242"));
-            holder.btnAdd.setAlpha(1.0f);
-            holder.btnAdd.setEnabled(true);
+            holder.btnAddInitial.setAlpha(1.0f);
+            holder.btnAddInitial.setEnabled(true);
+            holder.btnIncrease.setEnabled(true);
         }
 
-        // Badge kuantitas kecil di pojok tombol '+' jika item sudah ada di cart
-        if (item.getQuantity() > 0) {
-            holder.tvQtyBadge.setVisibility(View.VISIBLE);
-            holder.tvQtyBadge.setText(String.valueOf(item.getQuantity()));
+        // 2. LOGIKA TOGGLE UI KAPSUL VS TOMBOL AWAL
+        int currentQty = item.getQuantity();
+        if (currentQty > 0) {
+            // Sembunyikan tombol awal, munculkan kapsul (+/-)
+            holder.btnAddInitial.setVisibility(View.GONE);
+            holder.llQuantityControl.setVisibility(View.VISIBLE);
+            holder.tvQuantity.setText(String.valueOf(currentQty));
         } else {
-            holder.tvQtyBadge.setVisibility(View.GONE);
+            // Tampilkan tombol awal, sembunyikan kapsul
+            holder.btnAddInitial.setVisibility(View.VISIBLE);
+            holder.llQuantityControl.setVisibility(View.GONE);
         }
 
+        // 3. PASANG LISTENER
         holder.cardRoot.setOnClickListener(v -> {
             if (listener != null) listener.onCardClicked(item, holder.getBindingAdapterPosition());
         });
 
-        holder.btnAdd.setOnClickListener(v -> {
-            if (listener != null) listener.onAddClicked(item, holder.getBindingAdapterPosition());
+        // Klik tombol (+) awal ATAU klik (+) di dalam kapsul akan memicu fungsi yang sama
+        holder.btnAddInitial.setOnClickListener(v -> {
+            if (listener != null) listener.onIncreaseClicked(item, holder.getBindingAdapterPosition());
+        });
+        holder.btnIncrease.setOnClickListener(v -> {
+            if (listener != null) listener.onIncreaseClicked(item, holder.getBindingAdapterPosition());
+        });
+
+        // Klik tombol (-) di dalam kapsul
+        holder.btnDecrease.setOnClickListener(v -> {
+            if (listener != null) listener.onDecreaseClicked(item, holder.getBindingAdapterPosition());
         });
     }
 
@@ -121,9 +141,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MenuView
         ImageView ivMenuImage;
         TextView tvMenuTitle;
         TextView tvMenuPrice;
-        ImageView btnAdd;
-        TextView tvQtyBadge;
-        TextView tvMenuStock; // Widget Text untuk Stok
+        TextView tvMenuStock;
+
+        // 4. DAFTARKAN WIDGET BARU
+        ImageView btnAddInitial;
+        View llQuantityControl;
+        ImageView btnDecrease;
+        ImageView btnIncrease;
+        TextView tvQuantity;
 
         MenuViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -131,9 +156,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MenuView
             ivMenuImage = itemView.findViewById(R.id.ivMenuImage);
             tvMenuTitle = itemView.findViewById(R.id.tvMenuTitle);
             tvMenuPrice = itemView.findViewById(R.id.tvMenuPrice);
-            btnAdd = itemView.findViewById(R.id.btnAddMenu);
-            tvQtyBadge = itemView.findViewById(R.id.tvQtyBadge);
-            tvMenuStock = itemView.findViewById(R.id.tvMenuStock); // Pastikan ini di-bind
+            tvMenuStock = itemView.findViewById(R.id.tvMenuStock);
+
+            // HAPUS btnAdd & tvQtyBadge lama, ganti dengan yang baru
+            btnAddInitial = itemView.findViewById(R.id.btnAddInitial);
+            llQuantityControl = itemView.findViewById(R.id.llQuantityControl);
+            btnDecrease = itemView.findViewById(R.id.btnDecrease);
+            btnIncrease = itemView.findViewById(R.id.btnIncrease);
+            tvQuantity = itemView.findViewById(R.id.tvQuantity);
         }
     }
 }

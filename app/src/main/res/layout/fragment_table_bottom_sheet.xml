@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_content_card"
+    android:orientation="vertical"
+    android:paddingTop="12dp">
+
+    <View android:layout_width="40dp" android:layout_height="4dp" android:layout_gravity="center_horizontal" android:background="#E0E0E0" android:layout_marginBottom="16dp" />
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingHorizontal="20dp" android:layout_marginBottom="16dp">
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:layout_alignParentStart="true" android:layout_toStartOf="@id/btnCloseTable">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pilih Meja" android:textColor="#00796B" android:textSize="20sp" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pilih atau tambahkan meja baru" android:textColor="#9E9E9E" android:textSize="14sp" />
+        </LinearLayout>
+        <ImageView android:id="@+id/btnCloseTable" android:layout_width="32dp" android:layout_height="32dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:background="@drawable/bg_circle_blue" android:padding="8dp" android:src="@drawable/ic_delete" />
+    </RelativeLayout>
+
+    <EditText android:id="@+id/etSearchTable" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginHorizontal="16dp" android:layout_marginBottom="16dp" android:background="@drawable/bg_input_outline" android:drawableStart="@drawable/ic_search" android:drawablePadding="12dp" android:hint="Cari nomor/nama meja..." android:inputType="text" android:paddingHorizontal="16dp" android:textSize="15sp" />
+
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvTables" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:clipToPadding="false" android:paddingBottom="16dp" />
+
+    <com.google.android.material.button.MaterialButton android:id="@+id/btnAddTable" android:layout_width="match_parent" android:layout_height="56dp" android:layout_margin="16dp" android:text="Tambah Meja" android:textAllCaps="false" android:textSize="16sp" android:textStyle="bold" app:backgroundTint="#00796B" app:cornerRadius="12dp" />
+</LinearLayout>
