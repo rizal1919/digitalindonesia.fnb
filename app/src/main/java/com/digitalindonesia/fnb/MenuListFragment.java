@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.digitalindonesia.fnb.fragments.HoldListBottomSheetFragment;
+import com.digitalindonesia.fnb.model.HoldManager;
 import com.digitalindonesia.fnb.model.Ingredient;
 import com.digitalindonesia.fnb.model.MenuItem;
 import com.digitalindonesia.fnb.adapter.ProductAdapter;
@@ -60,6 +62,7 @@ public class MenuListFragment extends Fragment implements ProductAdapter.OnMenuI
     // Simpan status filter saat ini
     private String currentSearchQuery = "";
     private String currentCategory = "Semua"; // Default category
+    private TextView tvHoldBadge;
 
     private final CartManager.CartListener cartListener = (totalQty, totalPrice) -> {
         if (getActivity() instanceof CartUpdateHost) {
@@ -112,6 +115,59 @@ public class MenuListFragment extends Fragment implements ProductAdapter.OnMenuI
             applyViewMode(); // Render ulang layout
         });
 
+        tvHoldBadge = view.findViewById(R.id.tvHoldBadge);
+        View btnArchiveContainer = view.findViewById(R.id.btnArchiveContainer);
+
+        btnArchiveContainer.setOnClickListener(v -> {
+            HoldListBottomSheetFragment bottomSheet = new HoldListBottomSheetFragment();
+            bottomSheet.setOnDismissListener(() -> updateHoldBadge());
+
+            // Logika Penarikan Data (Mencocokkan Copy dengan Asli)
+            bottomSheet.setOnRestoreListener((order, directToPay) -> {
+                CartManager.getInstance().clear();
+
+                // 1. Reset semua kuantitas di list lokal menjadi 0 dulu
+                for (MenuItem item : fullMenuList) {
+                    item.setQuantity(0);
+                    item.setNote("");
+                    item.setCustomPrice(0);
+                    item.setDiscount(0);
+                }
+
+                // 2. Cocokkan ID dari data hold ke data asli
+                for (MenuItem savedItem : order.items) {
+                    for (MenuItem originalItem : fullMenuList) {
+                        if (originalItem.getId() == savedItem.getId()) {
+                            // Pindahkan data ke objek aslinya
+                            originalItem.setQuantity(savedItem.getQuantity());
+                            originalItem.setNote(savedItem.getNote());
+                            originalItem.setCustomPrice(savedItem.getCustomPrice());
+                            originalItem.setDiscount(savedItem.getDiscount());
+                            originalItem.setDiscountPercent(savedItem.isDiscountPercent());
+
+                            // Masukkan objek ASLI ke dalam CartManager
+                            CartManager.getInstance().setQuantity(originalItem, originalItem.getQuantity());
+                            break;
+                        }
+                    }
+                }
+
+                // 3. Hapus data hold & paksa UI Menu untuk merender ulang
+                com.digitalindonesia.fnb.model.HoldManager.getInstance().removeHoldOrder(order);
+                adapter.notifyDataSetChanged();
+                updateHoldBadge();
+
+                // 4. Arahkan sesuai tombol yang ditekan (Tambah / Bayar)
+                if (directToPay) {
+                    startActivity(new Intent(requireActivity(), CheckoutActivity.class));
+                } else {
+                    Toast.makeText(getContext(), "Data ditarik ke keranjang", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            bottomSheet.show(getParentFragmentManager(), "HoldList");
+        });
+
         setupSearch();
 
         tvClear.setOnClickListener(v -> {
@@ -156,6 +212,19 @@ public class MenuListFragment extends Fragment implements ProductAdapter.OnMenuI
 
             startActivity(intent);
         });
+    }
+
+    // Fungsi untuk memunculkan/menyembunyikan angka Hold
+    public void updateHoldBadge() {
+        if (tvHoldBadge != null) {
+            int holdCount = HoldManager.getInstance().getHoldOrders().size();
+            if (holdCount > 0) {
+                tvHoldBadge.setVisibility(View.VISIBLE);
+                tvHoldBadge.setText(String.valueOf(holdCount));
+            } else {
+                tvHoldBadge.setVisibility(View.GONE);
+            }
+        }
     }
 
     // ==== BARU: Setup Tab Order Type (pengganti setupOrderTypeSpinner) ====
@@ -277,6 +346,7 @@ public class MenuListFragment extends Fragment implements ProductAdapter.OnMenuI
     @Override
     public void onResume() {
         super.onResume();
+        updateHoldBadge();
         CartManager cart = CartManager.getInstance();
         cart.addListener(cartListener);
         if (getActivity() instanceof CartUpdateHost) {

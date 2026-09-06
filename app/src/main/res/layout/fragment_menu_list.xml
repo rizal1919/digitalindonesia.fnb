@@ -244,6 +244,42 @@
                 android:textSize="16sp"
                 android:textColor="@android:color/black" />
 
+            <!-- Bungkus Ikon Archive dan Badge Angka -->
+            <FrameLayout
+                android:id="@+id/btnArchiveContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:clipToPadding="false"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/btnArchive"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_archive"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:tint="#4A55C7" />
+
+                <!-- Badge Angka Merah -->
+                <TextView
+                    android:id="@+id/tvHoldBadge"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/bg_badge_red"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@android:color/white"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" /> <!-- Default disembunyikan -->
+            </FrameLayout>
+
             <ImageView
                 android:id="@+id/btnToggleView"
                 android:layout_width="28dp"

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="64dp"
+        android:paddingHorizontal="24dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_stok"
+            android:background="@drawable/bg_circle_yellow"
+            android:padding="20dp"
+            app:tint="#FF9800"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pesanan Tersimpan!"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pesanan berhasil di-hold dan dikirim ke dapur."
+            android:textColor="#757575"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Card TRX -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#E0E0E0"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="#F5F5F5"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_messages"
+                    app:tint="@android:color/black"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="12dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NOMOR TRANSAKSI" android:textSize="10sp" android:textColor="#9E9E9E"/>
+                    <TextView android:id="@+id/tvTrxNumber" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TRX-6" android:textStyle="bold" android:textColor="@android:color/black" android:textSize="16sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="end">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NOMOR ANTRIAN" android:textSize="10sp" android:textColor="#9E9E9E"/>
+                    <TextView android:id="@+id/tvQueue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1" android:textStyle="bold" android:textColor="#00796B" android:textSize="20sp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Card Rincian -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#E0E0E0"
+            app:cardBackgroundColor="@android:color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rincian Keuangan" android:textStyle="bold" android:textColor="@android:color/black"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="12dp"/>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Total Belanja Master" android:textColor="#9E9E9E"/>
+                    <TextView android:id="@+id/tvTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 29,970" android:textStyle="bold" android:textColor="@android:color/black"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Tombol Cetak -->
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Aksi Cetak &amp; Dokumen" android:textSize="12sp" android:textColor="#9E9E9E" android:layout_marginTop="24dp" android:layout_marginBottom="8dp"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:layout_marginEnd="8dp" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:text="Struk Dapur" android:textColor="@android:color/black" app:strokeColor="#E0E0E0" app:icon="@drawable/ic_dashboard" app:iconTint="@android:color/black"/>
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:layout_marginStart="8dp" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:text="Struk Bill" android:textColor="@android:color/black" app:strokeColor="#E0E0E0" app:icon="@drawable/ic_receipt" app:iconTint="@android:color/black"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Tombol Bawah -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="@android:color/white">
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginBottom="16dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTransaksiBaru"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Transaksi Baru"
+            app:backgroundTint="#00796B"
+            app:cornerRadius="8dp"
+            android:layout_marginBottom="12dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnKeHome"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Kembali ke Home"
+            android:textColor="#00796B"
+            app:strokeColor="#00796B"
+            app:cornerRadius="8dp"/>
+    </LinearLayout>
+</RelativeLayout>

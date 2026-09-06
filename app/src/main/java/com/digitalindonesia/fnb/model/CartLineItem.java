@@ -1,24 +1,20 @@
 package com.digitalindonesia.fnb.model;
 
 public class CartLineItem {
-    private String name;
+    private MenuItem menuItem; // Simpan objek aslinya untuk referensi ke CartManager
     private String variant;
-    private double price;
-    private int quantity;
-    private int imageResId;
 
-    public CartLineItem(String name, String variant, double price, int quantity, int imageResId) {
-        this.name = name;
+    public CartLineItem(MenuItem menuItem, String variant) {
+        this.menuItem = menuItem;
         this.variant = variant;
-        this.price = price;
-        this.quantity = quantity;
-        this.imageResId = imageResId;
     }
 
-    public String getName() { return name; }
+    public MenuItem getMenuItem() { return menuItem; }
     public String getVariant() { return variant; }
-    public double getPrice() { return price; }
-    public int getQuantity() { return quantity; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
-    public int getImageResId() { return imageResId; }
+
+    // Ambil data langsung dari MenuItem agar selalu sinkron
+    public String getName() { return menuItem.getName(); }
+    public double getPrice() { return menuItem.getPrice(); }
+    public int getQuantity() { return menuItem.getQuantity(); }
+    public int getImageResId() { return menuItem.getImageResId(); }
 }

@@ -22,7 +22,7 @@
             android:paddingTop="8dp"
             android:paddingBottom="24dp">
 
-            <!-- ===================== ORDER SUMMARY (COLLAPSIBLE) ===================== -->
+            <!-- ORDER SUMMARY HEADER -->
             <LinearLayout
                 android:id="@+id/headerRingkasan"
                 android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                 android:background="#EEEEEE"
                 android:layout_marginVertical="12dp" />
 
-            <!-- ===================== EMPTY STATE (KERANJANG KOSONG) ===================== -->
+            <!-- EMPTY STATE (KERANJANG KOSONG) -->
             <LinearLayout
                 android:id="@+id/llEmptyCart"
                 android:layout_width="match_parent"
@@ -99,52 +99,12 @@
                     app:strokeColor="#FF9800" />
             </LinearLayout>
 
-            <!-- ===================== RINCIAN HARGA (DINAMIS) ===================== -->
+            <!-- RINCIAN HARGA (Tanpa Pajak) -->
             <LinearLayout
                 android:id="@+id/llPriceSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="6dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Subtotal"
-                        android:textColor="#757575" />
-
-                    <TextView
-                        android:id="@+id/tvSubtotal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="Rp50.000" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="6dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Pajak (PPN 11%)"
-                        android:textColor="#757575" />
-
-                    <TextView
-                        android:id="@+id/tvTax"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="Rp5.500" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -156,12 +116,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Total"
+                        android:text="Subtotal"
                         android:textStyle="bold"
                         android:textSize="15sp" />
 
                     <TextView
-                        android:id="@+id/tvGrandTotal"
+                        android:id="@+id/tvSubtotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="Rp55.500"
@@ -177,7 +137,7 @@
                     android:layout_marginVertical="16dp" />
             </LinearLayout>
 
-            <!-- ===================== SECTION: PILIH PELANGGAN ===================== -->
+            <!-- SECTION: PILIH PELANGGAN -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -219,7 +179,6 @@
                 android:visibility="visible"
                 android:layout_marginBottom="20dp" />
 
-            <!-- UI Seamless Selector Pelanggan -->
             <LinearLayout
                 android:id="@+id/btnPilihPelangganDb"
                 android:layout_width="match_parent"
@@ -257,7 +216,7 @@
                     app:tint="#BDBDBD" />
             </LinearLayout>
 
-            <!-- ===================== SECTION: PILIH MEJA ===================== -->
+            <!-- SECTION: PILIH MEJA -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -299,7 +258,6 @@
                 android:visibility="visible"
                 android:layout_marginBottom="20dp" />
 
-            <!-- UI Seamless Selector Meja -->
             <LinearLayout
                 android:id="@+id/btnPilihMejaDb"
                 android:layout_width="match_parent"
@@ -337,7 +295,7 @@
                     app:tint="#BDBDBD" />
             </LinearLayout>
 
-            <!-- ===================== SECTION: DESKRIPSI ===================== -->
+            <!-- SECTION: DESKRIPSI -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -361,26 +319,65 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- ===================== BOTTOM ACTION BAR (melayang) ===================== -->
+    <!-- BOTTOM ACTION BAR (melayang) dengan 3 Tombol -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/bottomActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="8dp"
+        app:cardElevation="16dp"
         app:cardCornerRadius="0dp"
         app:cardBackgroundColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLanjutPembayaran"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_margin="16dp"
-            android:text="Lanjut ke Pembayaran"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            app:backgroundTint="#FF9800"
-            app:cornerRadius="26dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Baris Atas: Simpan & Tambah Pesanan -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSimpanPesanan"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="Hold / Simpan"
+                    android:textColor="#00796B"
+                    app:strokeColor="#00796B"
+                    app:cornerRadius="8dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTambahPesanan"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="Tambah Menu"
+                    android:textColor="#00796B"
+                    app:strokeColor="#00796B"
+                    app:cornerRadius="8dp" />
+            </LinearLayout>
+
+            <!-- Baris Bawah: Lanjut Pembayaran -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLanjutPembayaran"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="Lanjut ke Pembayaran"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                app:backgroundTint="#FF9800"
+                app:cornerRadius="26dp" />
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

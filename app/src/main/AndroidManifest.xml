@@ -13,9 +13,11 @@
         android:theme="@style/Theme.Fnb"
         tools:targetApi="31">
         <activity
-            android:name=".CheckoutActivity"
+            android:name=".HoldSuccessActivity"
             android:exported="false" />
-        <!-- SPLASH SCREEN SEBAGAI LAUNCHER (HALAMAN PERTAMA) -->
+        <activity
+            android:name=".CheckoutActivity"
+            android:exported="false" /> <!-- SPLASH SCREEN SEBAGAI LAUNCHER (HALAMAN PERTAMA) -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
