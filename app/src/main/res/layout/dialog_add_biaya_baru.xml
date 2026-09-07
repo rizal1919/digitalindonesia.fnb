@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_content_card"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="24dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tambah Biaya Tambahan" android:textColor="@android:color/black" android:textSize="16sp" android:textStyle="bold" />
+        <ImageView android:id="@+id/btnCloseAdd" android:layout_width="24dp" android:layout_height="24dp" android:layout_alignParentEnd="true" android:src="@drawable/ic_delete" app:tint="#9E9E9E" />
+    </RelativeLayout>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp" android:text="Nama Biaya Tambahan" android:textColor="@android:color/black" android:textStyle="bold" />
+    <EditText android:id="@+id/etNamaBiayaBaru" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="16dp" android:background="@drawable/bg_input_outline" android:hint="Masukan Nama Biaya" android:paddingHorizontal="14dp" android:textSize="14sp" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp" android:text="Harga Biaya" android:textColor="@android:color/black" android:textStyle="bold" />
+    <EditText android:id="@+id/etHargaBiayaBaru" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="24dp" android:background="@drawable/bg_input_outline" android:hint="Masukan Harga Biaya" android:inputType="number" android:paddingHorizontal="14dp" android:textSize="14sp" />
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="24dp">
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tambahkan ke transaksi" android:textColor="@android:color/black" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="otomatis di tambah di transaksi baru" android:textColor="#9E9E9E" android:textSize="12sp" />
+        </LinearLayout>
+        <androidx.appcompat.widget.SwitchCompat android:id="@+id/switchAutoAdd" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <com.google.android.material.button.MaterialButton android:id="@+id/btnSimpanBiayaBaru" android:layout_width="match_parent" android:layout_height="52dp" android:text="Simpan" app:backgroundTint="#00796B" />
+</LinearLayout>

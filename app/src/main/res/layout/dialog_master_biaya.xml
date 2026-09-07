@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_content_card"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="4dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Biaya Tambahan" android:textColor="#00796B" android:textSize="18sp" android:textStyle="bold" />
+        <ImageView android:id="@+id/btnCloseMaster" android:layout_width="24dp" android:layout_height="24dp" android:layout_alignParentEnd="true" android:src="@drawable/ic_delete" app:tint="#9E9E9E" />
+    </RelativeLayout>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="16dp" android:text="Pilih atau tambahkan biaya layanan lainnya" android:textColor="#9E9E9E" android:textSize="12sp" />
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginBottom="16dp" android:background="@drawable/bg_input_outline" android:gravity="center_vertical" android:orientation="horizontal" android:paddingHorizontal="14dp">
+        <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_search" app:tint="#9E9E9E" />
+        <EditText android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginStart="8dp" android:background="@null" android:hint="Cari nama biaya..." android:textSize="14sp" />
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="200dp" android:layout_marginBottom="16dp">
+        <LinearLayout android:id="@+id/llMasterList" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+            <!-- Dummy Data Sesuai Gambar -->
+            <LinearLayout android:id="@+id/btnPilihRenov" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12dp" android:background="@drawable/bg_input_outline" android:orientation="vertical" android:padding="16dp" android:clickable="true" android:focusable="true">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Renov" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp.1,500" android:textColor="#00796B" android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/btnPilihKepake" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/bg_input_outline" android:orientation="vertical" android:padding="16dp" android:clickable="true" android:focusable="true">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kepake" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp.1,000" android:textColor="#00796B" android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton android:id="@+id/btnTambahBiayaBaru" android:layout_width="match_parent" android:layout_height="52dp" android:text="+ Tambah Biaya Baru" app:backgroundTint="#00796B" />
+</LinearLayout>

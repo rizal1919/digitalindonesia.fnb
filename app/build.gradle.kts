@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.getByName
+
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -14,6 +16,14 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    // Tambahkan blok ini:
+    signingConfigs {
+        getByName("debug") {
+            val userHome = System.getProperty("user.home")
+            storeFile = file("$userHome/.android/debug.keystore")
+        }
     }
 
     buildTypes {
