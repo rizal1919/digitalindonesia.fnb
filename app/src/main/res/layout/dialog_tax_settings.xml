@@ -25,11 +25,13 @@
     <LinearLayout android:layout_width="match_parent" android:layout_height="64dp" android:layout_marginBottom="16dp" android:background="@drawable/bg_input_outline" android:gravity="center_vertical" android:orientation="horizontal" android:paddingHorizontal="16dp">
         <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_sale" app:tint="#757575" />
         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:layout_weight="1" android:text="Hitung Pajak" android:textColor="@android:color/black" android:textStyle="bold" />
-        <!-- Tombol dropdown statis sesuai gambar -->
-        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/bg_input_outline" android:gravity="center_vertical" android:paddingHorizontal="12dp" android:paddingVertical="8dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sebelum Diskon" android:textColor="@android:color/black" android:textSize="12sp" android:textStyle="bold" />
-            <ImageView android:layout_width="14dp" android:layout_height="14dp" android:layout_marginStart="8dp" android:src="@drawable/ic_down" app:tint="#757575" />
-        </LinearLayout>
+
+        <!-- Menggunakan Spinner untuk Dropdown -->
+        <Spinner
+            android:id="@+id/spinnerTaxLogic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#9E9E9E" />
     </LinearLayout>
 
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="24dp" android:background="@drawable/bg_input_outline" android:gravity="center_vertical" android:orientation="horizontal" android:padding="16dp">

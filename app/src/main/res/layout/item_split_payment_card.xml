@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#E0E0E0"
+    app:strokeWidth="1dp">
+
+    <!-- WUJUD 1: BELUM BAYAR (Form Input) -->
+    <LinearLayout
+        android:id="@+id/llUnpaidView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+            <ImageView android:id="@+id/icEdit" android:layout_width="16dp" android:layout_height="16dp" android:layout_centerVertical="true" android:src="@drawable/ic_edit" app:tint="#9E9E9E" android:background="?attr/selectableItemBackgroundBorderless" android:clickable="true" android:focusable="true"/>
+            <TextView android:id="@+id/tvPersonName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="8dp" android:layout_toEndOf="@id/icEdit" android:text="Orang 1" android:textColor="@android:color/black" android:textSize="16sp" android:textStyle="bold"/>
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:gravity="end" android:orientation="vertical">
+                <TextView android:id="@+id/tvPersonTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 0" android:textColor="#00796B" android:textSize="16sp" android:textStyle="bold"/>
+                <TextView android:id="@+id/tvPersonItemsCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0 Item ⓘ" android:textColor="#9E9E9E" android:textSize="10sp"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginVertical="12dp" android:background="#EEEEEE"/>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:text="Metode Pembayaran:" android:textColor="#757575" android:textSize="13sp"/>
+
+            <!-- DROPDOWN CUSTOM (PENGGANTI SPINNER) -->
+            <LinearLayout
+                android:id="@+id/btnSelectMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/bg_input_outline"
+                android:backgroundTint="#F5F5F5"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="8dp">
+
+                <TextView
+                    android:id="@+id/tvSelectedMethod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cash"
+                    android:textColor="#424242"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_down"
+                    app:tint="#424242" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal">
+            <EditText android:id="@+id/etPayAmount" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="@drawable/bg_input_outline" android:hint="Input Jml Uang (Rp)" android:paddingHorizontal="12dp" android:textStyle="bold" android:inputType="number" android:textSize="14sp"/>
+            <com.google.android.material.button.MaterialButton android:id="@+id/btnPayAction" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_marginStart="8dp" android:insetTop="0dp" android:insetBottom="0dp" android:text="Bayar" app:backgroundTint="#00796B"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- WUJUD 2: SUDAH BAYAR (Status Selesai) -->
+    <LinearLayout
+        android:id="@+id/llPaidView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <!-- Gunakan ic_check atau tambah ic_check_circle di drawable -->
+        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_check" app:tint="#00C853" android:background="#E8F5E9" android:padding="4dp" app:cornerRadius="12dp"/>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="12dp">
+            <TextView android:id="@+id/tvPaidName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Orang 1" android:textColor="@android:color/black" android:textSize="16sp" android:textStyle="bold"/>
+            <TextView android:id="@+id/tvPaidDesc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cash · Kembalian : Rp.0" android:textColor="#757575" android:textSize="13sp" android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="end">
+            <TextView android:id="@+id/tvPaidTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 12.000" android:textColor="#00796B" android:textSize="16sp" android:textStyle="bold"/>
+            <TextView android:id="@+id/tvPaidItemsCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1 Item ⓘ" android:textColor="#9E9E9E" android:textSize="10sp"/>
+            <TextView android:id="@+id/btnUbahStatus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ubah" android:textColor="#1976D2" android:textSize="14sp" android:layout_marginTop="12dp" android:background="?attr/selectableItemBackground" android:clickable="true" android:focusable="true"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

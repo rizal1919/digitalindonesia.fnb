@@ -29,4 +29,7 @@
 
     <color name="green_button">#3ABF6B</color>
     <color name="bg_soft">#F5F6FA</color>
+
+    <color name="teal_50">#E0F2F1</color>
+    <color name="teal_700">#00796B</color>
 </resources>

@@ -144,20 +144,29 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:text="Biaya Tambahan"
+                        android:layout_marginBottom="8dp"
+                        android:text="Biaya Tambahan &amp; Pajak"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <!-- Wadah Kosong untuk Biaya Tambahan yang dipilih -->
+                    <!-- EMPTY STATE -->
+                    <TextView
+                        android:id="@+id/tvEmptyChargeTax"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:text="Belum ada biaya atau pajak tambahan."
+                        android:textColor="#9E9E9E"
+                        android:textSize="13sp"
+                        android:textStyle="italic" />
+
                     <LinearLayout
                         android:id="@+id/llChargeContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical" />
 
-                    <!-- Wadah Kosong untuk Pajak yang dipilih -->
                     <LinearLayout
                         android:id="@+id/llTaxContainer"
                         android:layout_width="match_parent"
@@ -235,34 +244,34 @@
 
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="6dp" android:orientation="horizontal">
                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Subtotal Item" android:textColor="#757575" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 27.000" android:textColor="@android:color/black" android:textStyle="bold" />
+                        <TextView android:id="@+id/tvSummarySubtotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 0" android:textColor="@android:color/black" android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="6dp" android:orientation="horizontal">
                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Diskon Item" android:textColor="#757575" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="- Rp 0" android:textColor="#E53935" android:textStyle="bold" />
+                        <TextView android:id="@+id/tvSummaryItemDisc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="- Rp 0" android:textColor="#E53935" android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="6dp" android:orientation="horizontal">
                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Diskon Transaksi" android:textColor="#757575" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="- Rp 0" android:textColor="#E53935" android:textStyle="bold" />
+                        <TextView android:id="@+id/tvSummaryTrxDisc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="- Rp 0" android:textColor="#E53935" android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="6dp" android:orientation="horizontal">
-                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="PPN (10%)" android:textColor="#757575" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 250" android:textColor="@android:color/black" android:textStyle="bold" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="PPN" android:textColor="#757575" />
+                        <TextView android:id="@+id/tvSummaryTax" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 0" android:textColor="@android:color/black" android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12dp" android:orientation="horizontal">
                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Biaya Tambahan" android:textColor="#757575" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 2.500" android:textColor="@android:color/black" android:textStyle="bold" />
+                        <TextView android:id="@+id/tvSummaryCharge" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 0" android:textColor="@android:color/black" android:textStyle="bold" />
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginBottom="12dp" android:background="#EEEEEE" />
 
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Total Tagihan" android:textColor="@android:color/black" android:textSize="16sp" android:textStyle="bold" />
-                        <TextView android:id="@+id/tvSummaryGrandTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 29.750" android:textColor="#00796B" android:textSize="16sp" android:textStyle="bold" />
+                        <TextView android:id="@+id/tvSummaryGrandTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 0" android:textColor="#00796B" android:textSize="16sp" android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -285,7 +294,7 @@
                 <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_dashboard" app:tint="#9E9E9E" />
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:layout_weight="1" android:orientation="vertical">
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tanggal Transaksi" android:textColor="#9E9E9E" android:textSize="11sp" />
-                    <TextView android:id="@+id/tvTransactionDate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Minggu, 06/09/2026 15:14" android:textColor="@android:color/black" android:textStyle="bold" />
+                    <TextView android:id="@+id/tvTransactionDate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Memuat..." android:textColor="@android:color/black" android:textStyle="bold" />
                 </LinearLayout>
                 <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_down" app:tint="#9E9E9E" />
             </LinearLayout>
@@ -385,7 +394,7 @@
                 android:layout_marginBottom="12dp"
                 android:orientation="horizontal">
                 <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="TOTAL TAGIHAN" android:textColor="#9E9E9E" android:textStyle="bold" />
-                <TextView android:id="@+id/tvBottomTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 36.000" android:textColor="#00796B" android:textSize="22sp" android:textStyle="bold" />
+                <TextView android:id="@+id/tvBottomTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 0" android:textColor="#00796B" android:textSize="22sp" android:textStyle="bold" />
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton

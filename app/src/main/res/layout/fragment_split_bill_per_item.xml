@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9F9F9">
+
+    <!-- 1. Header Batal -->
+    <LinearLayout android:id="@+id/headerTop" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@android:color/white" android:elevation="4dp" android:gravity="center_vertical" android:orientation="horizontal" android:padding="16dp" android:layout_alignParentTop="true">
+        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:background="#E0F2F1" android:padding="6dp" android:src="@drawable/ic_money" app:tint="#00796B" />
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:layout_weight="1" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Split Bill / Bagi Tagihan" android:textColor="@android:color/black" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bagi per Item" android:textColor="#00796B" android:textSize="12sp" />
+        </LinearLayout>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnBatalkanSplit" android:layout_width="wrap_content" android:layout_height="40dp" android:insetBottom="0dp" android:insetTop="0dp" android:text="Batalkan" android:textAllCaps="false" android:textColor="@android:color/white" app:backgroundTint="#E53935" app:cornerRadius="8dp" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_below="@id/headerTop" android:layout_above="@id/bottomBarConfirm" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+
+            <!-- 2. Info Split Global -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="16dp" android:background="#E3F2FD" android:gravity="center_vertical" android:orientation="horizontal" android:padding="16dp">
+                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@drawable/ic_receipt" app:tint="#1976D2" />
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Split Bill - Per Item" android:textColor="#1565C0" android:textStyle="bold" />
+                    <TextView android:id="@+id/tvGlobalSummary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Memuat..." android:textColor="#546E7A" android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 3. Daftar Orang & Tombol Tambah -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" android:layout_marginBottom="16dp">
+                <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvPeopleChips" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="horizontal" />
+                <TextView android:id="@+id/btnAddPerson" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:text="+ Orang" android:textColor="#00796B" android:textStyle="bold" android:clickable="true" android:focusable="true" android:padding="8dp"/>
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginBottom="16dp" android:background="#E0E0E0" />
+
+            <!-- 4. Target Split Saat Ini -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="16dp" android:background="#E0F2F1" android:gravity="center_vertical" android:orientation="horizontal" android:padding="16dp">
+                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:background="@drawable/bg_circle_yellow" android:padding="6dp" android:src="@drawable/ic_user" app:tint="#00796B" />
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Target Split Item:" android:textColor="#757575" android:textSize="12sp" />
+                    <TextView android:id="@+id/tvTargetPersonName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pilih Orang" android:textColor="@android:color/black" android:textSize="16sp" android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="end" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Total Sementara" android:textColor="#757575" android:textSize="12sp" />
+                    <TextView android:id="@+id/tvTargetPersonTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp 0" android:textColor="#00796B" android:textSize="16sp" android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 5. List Menu Makanan (Dinamis) -->
+            <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvSplitItems" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="24dp" android:nestedScrollingEnabled="false" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="12dp" android:text="Rincian Pembayaran Per Orang" android:textColor="#263238" android:textSize="16sp" android:textStyle="bold" />
+            <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvPaymentCards" android:layout_width="match_parent" android:layout_height="wrap_content" android:nestedScrollingEnabled="false" android:paddingBottom="24dp"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- TOMBOL FINAL KONFIRMASI -->
+    <LinearLayout android:id="@+id/bottomBarConfirm" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:background="@android:color/white" android:elevation="16dp" android:padding="16dp">
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnKonfirmasiBayar" android:layout_width="match_parent" android:layout_height="52dp" android:text="Konfirmasi &amp; Selesai Bayar" android:textAllCaps="false" android:textStyle="bold" android:textSize="16sp" app:backgroundTint="#00796B" app:cornerRadius="8dp" android:textColor="@color/white" android:enabled="false"/>
+    </LinearLayout>
+</RelativeLayout>
